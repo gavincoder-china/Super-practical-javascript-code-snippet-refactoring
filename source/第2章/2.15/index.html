@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <title>2.15节,光标永远停留在文字最后</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+</head>
+<body>
+<h2>光标永远停留在文字最后</h2>
+<input type="text" id="cursorPos" value="光标永远停留在文字最后">
+<script type="text/javascript">
+    window.onload = function(){
+        var cursorPos = document.getElementById("cursorPos");//绑定两种事件，已达到最大兼容性
+
+        cursorPos.onclick = cursorPos.onkeyup  = function(){//绑定处理事件的函数
+            var _vLen = this.value.length;
+            if(this.setSelectionRange){//非IE
+                this.setSelectionRange(_vLen,_vLen);
+            }else{//IE中
+                var a =this.createTextRange();
+                a.moveStart('character',_vLen);
+                a.collapse(true);
+                a.select();
+            }
+        }
+    };
+</script>
+</body>
+</html>
