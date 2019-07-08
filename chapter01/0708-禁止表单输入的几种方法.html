@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>禁止表单输入的几种方法</title>
+</head>
+<body>
+<h2>禁止表单输入的几种方法</h2>
+
+<h3>表单元素的自带属性</h3>
+<input type="text" placeholder="禁止输入" readonly>
+<input type="text" placeholder="禁止输入" disabled>
+
+<h3>js操作禁止输入--控制失去焦点</h3>
+<input type="text" placeholder="禁止输入" id="NoInput">
+<h3>js操作禁止输入--键盘事件失去焦点并清空数值</h3>
+<input type="text" placeholder="禁止输入" id="NoInput2">
+
+
+</body>
+<script>
+    
+    
+    window.onload=function () {
+
+        var NoInput=document.getElementById("NoInput");
+
+        NoInput.onfocus=function () {
+            NoInput.blur();
+        }
+
+        //也可以通过键盘事件 清空 input value的方法来操作
+
+
+        var NoInput2=document.getElementById("NoInput2");
+        var clearIn=function(){
+            NoInput2.value="";
+        }
+        NoInput2.onkeyup=NoInput2.onblur=clearIn;
+    }
+</script>
+</html>

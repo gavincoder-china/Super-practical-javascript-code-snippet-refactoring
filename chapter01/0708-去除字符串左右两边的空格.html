@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去除字符串左右两边的空格</title>
+</head>
+<body>
+
+<h2>去除字符串两边的空格
+</h2>
+<input type="text" value="      我前面后面都有空格      " id="str" style="width: 200px;">
+
+<input type="button" value="清除空格" id="clearStr">
+<hr>
+<div>
+
+    tip:
+    不同空格的区别 <br>
+    1.不间断空格\u00A0,主要用在office中,让一个单词在结尾处不会换行显示,快捷键ctrl+shift+space ; <br>
+    2.半角空格(英文符号)\u0020,代码中常用的; <br>
+    3.全角空格(中文符号)\u3000,中文文章中使用;
+
+
+</div>
+</body>
+
+<script>
+
+   window.onload=function () {
+   let _str=document.getElementById("str"),
+       _button=document.getElementById("clearStr");
+
+
+   _button.onclick=function () {
+
+        _str.value=_str.value.replace(/^(\s|\u00A0|\u0020|\u3000)+|(\s|\u00A0|\u0020|\u3000)+$/g,"");
+
+
+   }
+
+
+
+   }
+
+</script>
+</html>

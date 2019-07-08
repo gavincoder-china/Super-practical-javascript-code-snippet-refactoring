@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>验证输入是否为空</title>
+</head>
+<body>
+<h2>验证输入是否为空</h2>
+<input type="text" placeholder="请输入内容" id="str" style="width: 200px">
+<input type="button" value="验证" id="checkStr">
+<hr>
+
+
+
+</body>
+<script>
+
+    window.onload=function () {
+
+        var _str=document.getElementById("str"),
+            _checkStr=document.getElementById("checkStr");
+
+        _checkStr.onclick=function () {
+
+            if (_str.value.replace(/^(\s|\u00A0|\u0020|\u3000)+|(\s|\u00A0|\u0020|\u3000)+$/g,"")){
+                alert("验证通过")
+            }else {
+                alert("验证失败,请您输入内容")
+            }
+
+        }
+
+    }
+
+</script>
+</html>
