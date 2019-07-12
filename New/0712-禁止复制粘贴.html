@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>禁止复制粘贴</title>
+</head>
+<body>
+    <h2>禁止复制粘贴</h2>
+    <input type="text " value="我不给你复制" id="banCopyPaste"> <br>
+    
+</body>
+<script>
+window.onload=function(){
+var banCopyPaste=document.getElementById("banCopyPaste");
+banCopyPaste.oncopy=function(){
+    return false;
+}
+banCopyPaste.onpaste=function(){
+    return false;
+}
+
+}
+</script>
+</html>

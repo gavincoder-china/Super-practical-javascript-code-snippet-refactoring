@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>禁止输入汉字</title>
+</head>
+
+<body>
+
+
+    <h2>禁止输入汉字</h2>
+
+    <p>支持主流浏览器</p>
+    <input type="text" placeholder="支持主流浏览器" id="banInputMethod">
+    <p>不支持 chrome 浏览器</p>
+    <input type="text" placeholder="不支持 chrome 浏览器" id="banChromeInput">
+
+
+    <br>
+    <br>
+
+
+    <div style="width: 600px;border: 2px solid rebeccapurple">
+        ime-mode:disabled是什么？<br>
+
+        解决：<br>
+
+            1.<br>
+
+             ime-mode版本：IE5+专有属性　继承性：无<br>
+             语法：<br>
+         
+             ime-mode : auto | active | inactive | disabled<br>
+         
+            参数：<br>
+         
+            auto : 不影响IME的状态。与不指定ime-mode属性时相同<br>
+            active : 指定所有使用IME输入的字符。即激活本地语言输入法。用户仍可以撤销激活IME<br>
+            inactive : 指定所有不使用IME输入的字符。即激活非本地语言。用户仍可以撤销激活IME<br>
+            disabled : 完全禁用IME。对于有焦点的控件（如输入框），用户不可以激活IME<br>
+         
+           2.<br>
+           我们给输入项添加属性style并将其值置为'ime-mode:disabled'，这样当在输入<br>
+           该项数据时就不能进行输入法转换了。如果当前是中文输入法输入的仍是英文字母。<br>
+
+    </div>
+
+
+</body>
+
+<script>
+    window.onload = function () {
+        //分析:一个是 ie5+的 ime-mode方法,但是不支持 chrome,可以支持 firefox
+        //另一种方法就是通过正则表达式替换中文字符
+
+
+        let banInputMethod = document.getElementById("banInputMethod");
+        let banChromeInput = document.getElementById("banChromeInput");
+
+        //这边是 imeMode 方法
+
+        banInputMethod.onfocus = function () {
+            this.style.imeMode = 'disabled';
+        }
+        //下面是主流方法,支持全部浏览器
+        var clearChinese = function (_this) {
+
+
+            // \u4e00-\u9fa5 这个正好是中文编码的开始--结束
+            _this.value = _this.value.replace(/[\u4e00-\u9fa5]/g, "");
+
+
+        }
+        //键盘事件,键盘按键弹起,执行方法
+        banInputMethod.onkeyup = function () {
+            clearChinese(this);
+        }
+        //失去焦点事件,失去焦点,执行方法
+        banInputMethod.onblur = function () {
+            clearChinese(this);
+        }
+
+
+    }
+
+</script>
+
+</html>
