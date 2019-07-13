@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>限制只能输入数字</title>
+</head>
+<body>
+    
+<h2>限制只能输入数字</h2>
+<form action="#">
+<p>1:通过设置 input 类型为 number 来限制</p>
+<input type="number" placeholder="只能输入数字"> <br>
+<p>2:通过HTML 5 中的 pattern 属性来限制</p>
+<input type="text"  placeholder="只能输入数字" pattern="[0-9]*"> <br>
+<p>3:通过 正则+js 事件来限制</p>
+<input type="text" placeholder="只能输入数字" id="banNumber"> <br>
+<br>
+<input type="submit"  value="提交">
+</form>
+</body>
+
+<script>
+window.onload=function(){
+
+var banNumber=document.getElementById("banNumber");
+var clearNumber=function(_this){
+    var _v=_this.value;
+    //过滤数字
+    _this.value=_v.replace(/\D/g,"");
+}
+
+//监听获取焦点事件
+banNumber.onfocus=function(){
+    clearNumber(this);
+}
+//监听键盘事件
+banNumber.onkeyup=function(){
+    clearNumber(this);
+}
+//监听失去焦点时间
+banNumber.onblur=function(){
+    clearNumber(this);
+}
+}
+
+</script>
+</html>
