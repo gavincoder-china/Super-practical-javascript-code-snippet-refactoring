@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>限制只能输入中文</title>
+</head>
+<body>
+    <h2>限制只能输入中文</h2>
+    <input type="text" placeholder="只能输入中文" id="OnlyChinese">
+</body>
+<script>
+
+
+window.onload=function(){
+var OnlyChinese=document.getElementById("OnlyChinese");
+var clearOthers=function(_this){
+    //这边的正则前加了个 ^,意思是 非...
+_this.value=_this.value.replace(/[^\u4e00-\u9fa5]/g,"");
+}
+OnlyChinese.onfocus=function(){
+    clearOthers(this);
+}
+OnlyChinese.onkeyup=function(){
+    clearOthers(this);
+}
+OnlyChinese.onblur=function(){
+    clearOthers(this);
+}
+
+
+
+}
+</script>
+</html>

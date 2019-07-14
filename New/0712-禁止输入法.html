@@ -74,6 +74,10 @@
 
 
         }
+        //获取焦点事件
+        banInputMethod.onfocus=function(){
+            clearChinese(this);
+        }
         //键盘事件,键盘按键弹起,执行方法
         banInputMethod.onkeyup = function () {
             clearChinese(this);
