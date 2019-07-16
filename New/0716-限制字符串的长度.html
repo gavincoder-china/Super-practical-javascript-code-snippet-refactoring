@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>限制字符串的长度</title>
+</head>
+
+<body>
+    <h2>限制字符串的长度</h2>
+    <p>1.通过 input 自带的 maxlength 来限制</p>
+    <input type="text" maxlength="5" placeholder="只能输入五个字符">
+    <p>2.通过 js 事件来限制</p>
+    <input type="text" data-length="5" placeholder="只能输入五个字符" id="control">
+    <!-- 这边写的 data-length 是自定义属性 -->
+</body>
+<script>
+    window.onload = function () {
+        var control = document.getElementById("control");
+        var clearMore = function (_this) {
+            //这个是写在 input 中的长度限制规定
+            const dataLength = _this.getAttribute("data-length");
+            //获取输入字符串
+            var this_value = _this.value;
+            //获取字符串长度
+            var this_length = this_value.length;
+            //判断长度是否超标,如果超标,截取字符串
+            if (this_length > dataLength) {
+                //并赋值给原 value
+               _this.value= this_value.substr(0, dataLength);
+            }
+
+
+        }
+        //正常三大监听事件,获取焦点事件,键盘弹起事件,失去焦点事件
+
+        control.onfocus = function () {
+           clearMore(this);
+        }
+        control.onkeyup = function () {
+            clearMore(this);
+        }
+        control.onblur = function () {
+           clearMore(this)
+        }
+
+
+    }
+
+
+</script>
+
+</html>
